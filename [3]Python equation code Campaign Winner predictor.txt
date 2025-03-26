@@ -1,0 +1,42 @@
+def calculate_percentage(shares):
+    total_shares = sum(shares)
+    return [(100 * share / total_shares) for share in shares]
+
+def candidate_prediction(usa_shares, ecuador_shares):
+    # USA Election
+    usa_instagram = [usa_shares['i1'], usa_shares['i2']]
+    usa_tiktok = [usa_shares['T1'], usa_shares['T2']]
+    usa_facebook = [usa_shares['F1'], usa_shares['F2']]
+    usa_youtube = [usa_shares['Y1'], usa_shares['Y2']]
+    
+    J = calculate_percentage(usa_instagram)
+    U = calculate_percentage(usa_tiktok)
+    G = calculate_percentage(usa_facebook)
+    Z = calculate_percentage(usa_youtube)
+    
+    XT1 = J[0] + U[0] + G[0] + Z[0]
+    usa_percentage = (XT1 * 100) / 400
+    
+    print(f"USA Election Prediction for Donald Trump: {usa_percentage:.2f}%")
+    
+    # Ecuador Election
+    ecuador_instagram = ecuador_shares
+    ecuador_tiktok = ecuador_shares
+    ecuador_facebook = ecuador_shares
+    ecuador_youtube = ecuador_shares
+    
+    J = calculate_percentage(ecuador_instagram)
+    U = calculate_percentage(ecuador_tiktok)
+    G = calculate_percentage(ecuador_facebook)
+    Z = calculate_percentage(ecuador_youtube)
+    
+    XT2 = sum(J) + sum(U) + sum(G) + sum(Z)
+    ecuador_percentage = (XT2 * 100) / 400
+    
+    print(f"Ecuador Election Prediction for Daniel Noboa: {ecuador_percentage:.2f}%")
+
+# Example usage
+usa_shares = {'i1': 300, 'i2': 200, 'T1': 250, 'T2': 150, 'F1': 400, 'F2': 100, 'Y1': 350, 'Y2': 50}
+ecuador_shares = [100, 200, 150, 50, 75, 25, 30, 20, 10, 5, 5, 5, 5, 5, 5, 5]
+
+candidate_prediction(usa_shares, ecuador_shares)
